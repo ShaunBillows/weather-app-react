@@ -3,19 +3,23 @@ import Home from "./pages/Home"
 import View from "./pages/View"
 import CreateEdit from "./pages/CreateEdit"
 // import { TempProvider } from "./hooks/useTemp"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 
 function App() {
+  const theme = createTheme()
   return (
     <>
-      {/* <TempProvider> */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/view" element={<View />}></Route>
-          <Route path="/edit" element={<CreateEdit />}></Route>
-        </Routes>
-      </Router>
-      {/* </TempProvider>  */}
+      <ThemeProvider theme={theme}>
+        {/* <TempProvider> */}
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/view" element={<View />}></Route>
+            <Route path="/edit" element={<CreateEdit />}></Route>
+          </Routes>
+        </Router>
+        {/* </TempProvider>  */}
+      </ThemeProvider>
     </>
   )
 }
