@@ -2,10 +2,10 @@ import { createContext, useState, useContext } from "react"
 const TempContext = createContext()
 
 export function TempProvider({ children }) {
-  const [tempUnit, setTempUnit] = useState("C")
+  const [tempUnit, setTempUnit] = useState("°C")
 
   const toggleTemp = () => {
-    setTempUnit(tempUnit === "C" ? "F" : "C")
+    setTempUnit(tempUnit === "°C" ? "F" : "°C")
   }
 
   return (

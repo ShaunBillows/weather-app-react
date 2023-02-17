@@ -48,11 +48,13 @@ const Home = () => {
           <Search setLocations={setLocations} locations={locations} />
           {/* Cards container */}
           <Grid container spacing={4}>
-            {locations.map((location) => (
-              <Grid item key={location?.loc} xs={6} sm={6} md={4}>
-                <LocationCard location={location} />
-              </Grid>
-            ))}
+            {locations.length
+              ? locations.map((location) => (
+                  <Grid item key={location?.loc} xs={6} sm={6} md={4}>
+                    <LocationCard location={location} />
+                  </Grid>
+                ))
+              : null}
           </Grid>
         </Container>
       </main>
