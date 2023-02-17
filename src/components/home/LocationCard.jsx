@@ -4,8 +4,14 @@ import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
+import { useTemp } from "../../context/useTemp"
+import { useState } from "react"
 
 const LocationCard = ({ location }) => {
+  const { tempUnit } = useTemp()
+  const temp_c = useState(location.weather.temp_c)
+  const temp_f = useState(location.weather.temp_f)
+
   return (
     <>
       {location ? (
@@ -25,26 +31,21 @@ const LocationCard = ({ location }) => {
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "center", my: 3 }}>
                   <Typography variant="h1" component="span">
-                    {location.weather.temp_c}
+                    {tempUnit === "C" ? temp_c : temp_f}
                   </Typography>
-                  <Typography variant="h4" component="span" sx={{ ml: 1 }}>
-                    C
-                  </Typography>
-                </Box>
-                <Box sx={{ display: "flex", justifyContent: "center", my: 1 }}>
-                  <Typography variant="h5" component="span">
-                    {location.weather.temp_f}
-                  </Typography>
-                  <Typography variant="h6" component="span" sx={{ ml: 1 }}>
-                    F
+                  <Typography variant="h2" component="span">
+                    {tempUnit}
                   </Typography>
                 </Box>
+                <Box
+                  sx={{ display: "flex", justifyContent: "center", my: 1 }}
+                ></Box>
               </CardContent>
               <CardActions sx={{ mt: "auto", justifyContent: "space-between" }}>
-                <Button variant="outlined" size="large">
+                <Button variant="contained" size="large">
                   Info
                 </Button>
-                <Button variant="contained" size="large">
+                <Button variant="outlined" size="large">
                   Edit
                 </Button>
               </CardActions>

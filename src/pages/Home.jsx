@@ -41,12 +41,12 @@ const Home = () => {
       <main>
         {/* Header */}
         <Header />
-        {/* Temp icon */}
-        <TempButton />
-        {/* Search bar */}
-        <Search setLocations={setLocations} locations={locations} />
-        {/* Cards container */}
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8, minHeight: "100vh" }} maxWidth="md">
+          {/* Temp icon */}
+          <TempButton />
+          {/* Search bar */}
+          <Search setLocations={setLocations} locations={locations} />
+          {/* Cards container */}
           <Grid container spacing={4}>
             {locations.map((location) => (
               <Grid item key={location?.loc} xs={6} sm={6} md={4}>

@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+          @theweatherapp
         </Typography>
         <Typography
           variant="subtitle1"
@@ -14,7 +14,7 @@ const Footer = () => {
           color="text.secondary"
           component="p"
         >
-          Something here to give the footer a purpose!
+          Get accurate weather forecasts, live updates, and more.
         </Typography>
       </Box>
     </>

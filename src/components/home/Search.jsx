@@ -21,7 +21,8 @@ const Search = ({ setLocations, locations }) => {
     if (!input || e.key !== "Enter") {
       return
     }
-    const weatherData = await getWeather([e.target.value])
+
+    const weatherData = await getWeather([input])
     if (weatherData.error) {
       setError(weatherData.error)
       return
@@ -56,40 +57,40 @@ const Search = ({ setLocations, locations }) => {
       >
         <Container maxWidth="sm">
           <Typography
-            component="h1"
+            component="h3"
             variant="h2"
             align="center"
-            color="text.primary"
+            color="textPrimary"
             gutterBottom
           >
-            Welcome
+            Weather Forecast
+          </Typography>
+          <Typography align="center" color="textPrimary" gutterBottom>
+            Check the weather at any location
           </Typography>
 
-          <Stack
-            sx={{ pt: 4 }}
-            direction="column"
-            justifyContent="center"
-            spacing={2}
-          >
+          <Box>
             <TextField
-              id="outlined-basic"
-              label="Search locations"
+              id="location-input"
+              label="Add location"
               variant="outlined"
-              onKeyPress={handlePressEnter}
+              fullWidth
+              onKeyDown={handlePressEnter}
               onChange={handleChange}
               value={input}
             />
-            {error ? (
-              <Typography
-                variant="h5"
-                align="left"
-                color="text.secondary"
-                paragraph
-              >
-                An error ocurred. Details: {error}
-              </Typography>
-            ) : null}
-          </Stack>
+          </Box>
+
+          {error && (
+            <Typography
+              variant="h5"
+              align="left"
+              color="textSecondary"
+              paragraph
+            >
+              An error occurred. Details: {error}
+            </Typography>
+          )}
         </Container>
       </Box>
     </>
