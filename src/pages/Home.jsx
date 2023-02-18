@@ -5,7 +5,7 @@ import Header from "../components/common/Header.jsx"
 import Footer from "../components/common/Footer"
 import TempButton from "../components/common/TempButton.jsx"
 import Search from "../components/home/Search.jsx"
-import LocationCard from "../components/Home/LocationCard.jsx"
+import LocationCard from "../components/home/LocationCard.jsx"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import Grid from "@mui/material/Grid"
