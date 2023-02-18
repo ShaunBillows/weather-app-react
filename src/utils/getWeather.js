@@ -4,7 +4,7 @@ export const getWeather = async (locations) => {
   try {
     const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY
     const requests = locations.map((location) => {
-      const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
+      const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
       return axios.get(url)
     })
     const responses = await Promise.all(requests)
@@ -24,7 +24,7 @@ export const getForecast = async (location) => {
   try {
     const apiKey = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY
     const requests = locations.map((location) => {
-      const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
+      const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
       return axios.get(url)
     })
     const responses = await Promise.all(requests)
