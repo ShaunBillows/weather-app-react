@@ -9,7 +9,6 @@ import Footer from "../components/common/Footer"
 import HomeButton from "../components/common/HomeButton"
 import TempButton from "../components/common/TempButton.jsx"
 import LocationCard from "../components/common/LocationCard.jsx"
-
 import CssBaseline from "@mui/material/CssBaseline"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
@@ -23,12 +22,21 @@ import CardContent from "@mui/material/CardContent"
 const View = () => {
   let { state } = useLocation()
   const [error, setError] = useState(null)
+  const [forecast, setForecast] = useState(null)
+  const [weather, setWeather] = useState(null)
+  const time = new Date().getHours()
 
   useEffect(() => {
     async function fetchData() {
       setError(null)
-      const data = await getLocations()
-      const forecast = await getForecast(data.map((el) => el.loc))
+      const location = state.location.loc
+      const { forecast, current, error } = await getForecast(location)
+      if (error) {
+        setError("Failed to fetch data.")
+        return
+      }
+      setForecast(forecast)
+      setWeather(current)
     }
     fetchData()
   }, [])
@@ -72,31 +80,23 @@ const View = () => {
           >
             <CardContent>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <WeatherIcon
-                  time={"11.00"}
-                  weatherType={"cloudy"}
-                  temperature={"7"}
-                />
-                <WeatherIcon
-                  time={"12.00"}
-                  weatherType={"sunny"}
-                  temperature={"8"}
-                />
-                <WeatherIcon
-                  time={"13.00"}
-                  weatherType={"partly cloudy"}
-                  temperature={"9"}
-                />
-                <WeatherIcon
-                  time={"14.00"}
-                  weatherType={"rainy"}
-                  temperature={"10"}
-                />
-                <WeatherIcon
-                  time={"15.00"}
-                  weatherType={"sunny"}
-                  temperature={"11"}
-                />
+                {/* Weather icons */}
+                {forecast
+                  ? forecast?.forecastday[0].hour
+                      .filter(
+                        (weather, hour) => hour > time - 1 && hour - time < 5
+                      )
+                      .map((weather, hour) => (
+                        <WeatherIcon
+                          time={`${time + hour + 1}:00`}
+                          weatherType={weather.condition.text}
+                          icon={weather.condition.icon}
+                          temp_c={weather.temp_c}
+                          temp_f={weather.temp_f}
+                          key={hour}
+                        />
+                      ))
+                  : null}
               </Box>
             </CardContent>
           </Card>
